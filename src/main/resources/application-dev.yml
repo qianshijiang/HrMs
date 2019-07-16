@@ -1,0 +1,99 @@
+server:
+  port: 8888
+spring:
+  devtools:
+      restart:
+        enabled: true
+  datasource:
+        name: mysql
+        # 如果存在多个数据源，监控的时候可以通过名字来区分开来
+        # 连接数据库的url
+        #url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+        #url: jdbc:mysql://132.232.240.177:3306/qrcode?autoReconnect=true&failOverReadOnly=false&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+        url: jdbc:mysql://129.28.109.71:3306/vhr?autoReconnect=true&failOverReadOnly=false&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+        # 连接数据库的账号
+        username: root
+        #  连接数据库的密码
+        #yn_odr520!
+        password: QSJ&&YXC
+        #Oracle驱动
+        #driver-class-name: oracle.jdbc.OracleDriver
+        #mysql驱动
+        driver-class-name: com.mysql.jdbc.Driver
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+        initialSize: 1
+        # 扩展插件
+        # 监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
+        filters: stat
+        # 最大连接池数量
+        maxActive: 20
+        # 获取连接时最大等待时间，单位毫秒
+        maxWait: 60000
+        # 最小连接池数量
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        # 连接保持空闲而不被驱逐的最长时间
+        minEvictableIdleTimeMillis: 300000
+        # 用来检测连接是否有效的sql，要求是一个查询语句
+        # 如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会其作用
+        validationQuery: select count(1) from 'table'
+        # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+        testWhileIdle: true
+        # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+        testOnBorrow: false
+        # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+        testOnReturn: false
+        # 是否缓存preparedStatement，即PSCache
+        poolPreparedStatements: false
+        # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true
+        maxOpenPreparedStatements: -1
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        maxPoolPreparedStatementPerConnectionSize: 20
+
+  #邮箱配置
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: 1510161612@qq.com
+      #QQ邮箱的授权码
+    password: fhmvfkwxjwmzhhjd
+    default-encoding: UTF-8
+    properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+              required: true
+            socketFactory:
+                      class: javax.net.ssl.SSLSocketFactory
+          debug: true
+
+# mybatis 配置
+mybatis:
+    type-aliases-package: com.hrms.entity
+    mapper-locations: classpath*:mapper/*.xml
+    check-config-location: true
+
+mapper:
+    mappers:
+        - com.iblog.base.BaseMapper
+        - tk.mybatis.mapper.common.Mapper
+    not-empty: true
+    identity: MYSQL
+
+
+# PageHelperConfig 可以替代此方案
+pagehelper:
+    helperDialect: mysql
+    # 启用合理化，如果pageNum < 1会查询第一页，如果pageNum > pages会查询最后一页
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+logging:
+  file: ./logs/HrMs-log.log
+  level:
+    com.iblog.mapper: debug

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
+  <classPathEntry location="E:/maven4/beimingruanjian/repository/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar"/>
+  <!-- 一个数据库一个context -->
+  <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <!-- TKmybatis配置 -->
+    <property name="javaFileEncoding" value="UTF-8"/>
+    <property name="beginningDelimiter" value="`"/>
+    <property name="endingDelimiter" value="`"/>
+    <!-- RowBounds pagination -->
+    <!--  <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+    <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />-->
+
+    <!-- 生成 JavaBean 对象继承 Serializable 类 -->
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+    <!-- 生成 JavaBean 对象重写 toString方法 -->
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+    <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+      <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+      <property name="caseSensitive" value="true"/>
+    </plugin>
+
+    <commentGenerator>
+      <property name="suppressDate" value="true" /> <!-- 是否取消注释 -->
+      <property name="suppressAllComments" value="true" /> <!-- 是否生成注释代时间戳 -->
+    </commentGenerator>
+
+    <!-- jdbc连接 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://129.28.109.71:3306/vhr" userId="root"
+                    password="QSJ&amp;&amp;YXC" />
+    <!--实体存放设置-->
+    <javaModelGenerator targetPackage="com.hrms.entity"
+                        targetProject="src/main/java">
+      <property name="enableSubPackages" value="true"/>
+
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+    <!--dao层文件存放位置-->
+    <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" >
+      <property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+    <!--mapper数据访问类存放位置-->
+    <javaClientGenerator targetPackage="com.hrms.mapper"
+                         targetProject="src/main/java" type="XMLMAPPER" >
+      <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+    <!--生成table 先建表 后生成 勿随意覆盖本身table 避免功能缺失  测试 自己找其他表测试 by zxm-->
+    <table tableName="test-hr"
+      enableCountByExample="false"
+      enableUpdateByExample="false"
+      enableDeleteByExample="false"
+      enableSelectByExample="false"
+      selectByExampleQueryId="false">
+      <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+    </table>
+  </context>
+</generatorConfiguration>
