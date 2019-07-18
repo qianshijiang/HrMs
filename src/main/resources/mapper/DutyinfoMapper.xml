@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.DutyinfoMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Dutyinfo">
+    <id column="dutyInfoId" jdbcType="INTEGER" property="dutyinfoid" />
+    <result column="dutyTime" jdbcType="TIMESTAMP" property="dutytime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="operatorId" jdbcType="INTEGER" property="operatorid" />
+  </resultMap>
+
+  <!--字段sql-->
+  <sql id="selectSql">
+    dutyInfoId,dutyTime,remarks,createTime,updateTime,operatorId
+  </sql>
+
+  <!---->
+</mapper>

@@ -1,9 +1,11 @@
 package com.hrms.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by sang on 2018/2/2.
  */
-public class SysMsg {
+public class SysMsg implements Serializable{
     private Long id;
     private Long mid;
     private Integer type;

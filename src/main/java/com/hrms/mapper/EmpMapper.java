@@ -1,5 +1,6 @@
 package com.hrms.mapper;
 
+import com.hrms.common.base.BaseMapper;
 import com.hrms.entity.Nation;
 import org.apache.ibatis.annotations.Param;
 import com.hrms.entity.Employee;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by sang on 2018/1/12.
  */
-public interface EmpMapper {
+public interface EmpMapper extends BaseMapper<Employee,String>{
     List<Nation> getAllNations();
 
     List<PoliticsStatus> getAllPolitics();

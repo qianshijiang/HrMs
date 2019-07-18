@@ -2,9 +2,10 @@ package com.hrms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Employee {
+public class Employee implements Serializable{
     private Long id;
     private String name;
     private String gender;

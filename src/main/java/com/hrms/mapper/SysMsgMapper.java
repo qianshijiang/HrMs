@@ -1,5 +1,6 @@
 package com.hrms.mapper;
 
+import com.hrms.common.base.BaseMapper;
 import com.hrms.entity.Hr;
 import com.hrms.entity.MsgContent;
 import com.hrms.entity.SysMsg;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * Created by sang on 2018/2/2.
  */
-public interface SysMsgMapper {
+public interface SysMsgMapper extends BaseMapper<SysMsg,String>{
 
     int sendMsg(MsgContent msg);
 

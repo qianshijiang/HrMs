@@ -1,8 +1,9 @@
 package com.hrms.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Salary {
+public class Salary implements Serializable{
     private Integer id;
     private Integer bonus;
     private Integer lunchSalary;
@@ -17,6 +18,7 @@ public class Salary {
     private Integer accumulationFundBase;
     private Float accumulationFundPer;
     private String name;
+    private Date updateDate;
 
     public Integer getId() {
         return id;
@@ -128,5 +130,13 @@ public class Salary {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }

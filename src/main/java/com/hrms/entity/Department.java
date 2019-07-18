@@ -2,14 +2,15 @@ package com.hrms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by sang on 2018/1/7.
  */
-public class Department {
-    private Long id;
+public class Department implements Serializable{
+    private Integer id;
     private String name;
     private Long parentId;
     private String depPath;
@@ -58,11 +59,11 @@ public class Department {
         this.result = result;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

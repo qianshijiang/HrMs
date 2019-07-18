@@ -1,9 +1,11 @@
 package com.hrms.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by sang on 2018/1/12.
  */
-public class Nation {
+public class Nation implements Serializable{
     private Long id;
     private String name;
 

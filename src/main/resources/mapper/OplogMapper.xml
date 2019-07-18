@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.OplogMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Oplog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="addDate" jdbcType="TIMESTAMP" property="adddate" />
+    <result column="operate" jdbcType="VARCHAR" property="operate" />
+    <result column="hrid" jdbcType="INTEGER" property="hrid" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+  </resultMap>
+
+  <sql id="selectSql">
+    id,addDate,operate,hrid,ip
+  </sql>
+
+  <!--根据条件查询-->
+  <select id="getOplogBydate" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="selectSql"/>
+    from oplog op
+    <where>
+      <if test="startime != null and startime != ''">
+        and op.addDate <![CDATA[>= ]]> str_to_date(concat(#{startime,jdbcType=VARCHAR},' 00:00:00'), '%Y-%m-%d %H:%i:%s')
+      </if>
+      <if test="endtime != null and endtime != ''">
+        and op.addDate <![CDATA[<= ]]> str_to_date(concat(#{endtime,jdbcType=VARCHAR},' 23:59:59'), '%Y-%m-%d %H:%i:%s')
+      </if>
+    </where>
+    order by op.addDate desc
+  </select>
+
+  <!--查询所有-->
+  <select id="getOplogByPage" resultMap="BaseResultMap">
+    select
+    <include refid="selectSql"/>
+    from oplog op order by op.addDate desc
+  </select>
+</mapper>

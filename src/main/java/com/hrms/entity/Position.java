@@ -1,11 +1,12 @@
 package com.hrms.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by sang on 2018/1/10.
  */
-public class Position {
+public class Position implements Serializable{
     private Long id;
     private String name;
     private Timestamp createDate;

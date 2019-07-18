@@ -96,4 +96,4 @@ pagehelper:
 logging:
   file: ./logs/HrMs-log.log
   level:
-    com.iblog.mapper: debug
+    com.hrbms.mapper: debug

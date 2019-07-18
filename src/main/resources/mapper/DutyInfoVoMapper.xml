@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.mapper.DutyInfoVoMapper">
+  <resultMap id="BaseResultMap" type="com.hrms.entity.Dutyinfo">
+    <id column="dutyInfoId" jdbcType="INTEGER" property="dutyinfoid" />
+    <result column="dutyTime" jdbcType="TIMESTAMP" property="dutytime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="operatorId" jdbcType="INTEGER" property="operatorid" />
+    <result column="operName" jdbcType="VARCHAR" property="operName" />
+    <result column="empId" jdbcType="INTEGER" property="empId" />
+    <result column="empName" jdbcType="VARCHAR" property="empName" />
+    <result column="workId" jdbcType="VARCHAR" property="workId" />
+  </resultMap>
+
+  <!--字段sql-->
+  <sql id="selectSql">
+    dutyInfoId,dutyTime,remarks,createTime,updateTime,operatorId,operName,empId,empName,workId
+  </sql>
+
+  <!--根据条件查询-->
+  <select id="findListByPage" resultMap="BaseResultMap" parameterType="java.lang.String">
+     SELECT d.dutyInfoId,
+            d.dutyTime,
+            d.remarks,
+            d.createTime,
+            d.updateTime,
+            d.operatorId,
+            h.`name` operName,
+            e.id empId,
+            e.`name` empName,
+            e.workID workId
+    from dutyInfo d LEFT JOIN duty t on d.dutyInfoId=t.dutyInfoId
+    LEFT JOIN employee e on e.id = t.employeeId
+    LEFT JOIN hr h on h.id=d.operatorId
+    <where>
+      <if test="dutyTime != null and dutyTime != ''">
+        and d.dutyTime <![CDATA[>= ]]> str_to_date(concat(#{dutyTime,jdbcType=VARCHAR},' 00:00:00'), '%Y-%m-%d %H:%i:%s')
+        and d.dutyTime <![CDATA[<= ]]> str_to_date(concat(#{dutyTime,jdbcType=VARCHAR},' 23:59:59'), '%Y-%m-%d %H:%i:%s')
+      </if>
+      <if test="empName != null and empName != ''">
+        and e.`name` like concat('%',#{empName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="workId != null and workId != ''">
+        and e.workID = #{workId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,8 +1,10 @@
 package com.hrms.mapper;
 
+import com.hrms.common.base.BaseMapper;
+
 /**
- * Created by sang on 2017/12/29.
+ * Created by qsj on 2017/12/29.
  */
-public interface SystemMapper {
+public interface SystemMapper extends BaseMapper{
 
 }

@@ -101,12 +101,23 @@
             <result column="sname" jdbcType="VARCHAR" property="name" />
         </association>
     </resultMap>
+
     <select id="getEmployeeByPage" resultMap="BaseResultMap">
-        select e.*,jl.`id` as jlid,jl.`name` as jlname,jl.`titleLevel` as jlTitleLevel,d.`id` as did,d.`name` as
-        dname,n.`id` as nid,n.`name` as nname,p.`id` as pid,p.`name` as pname,ps.`id` as psid,ps.`name` as psname from
-        employee e,joblevel jl,department d,nation n,position p,politicsstatus ps where e.`posId`=p.`id` and
-        e.`jobLevelId`=jl.`id` and e.`departmentId`=d.id and e.`nationId`=n.`id` and e.`politicId`=ps.`id` and e.`name`
-        like concat('%',#{keywords},'%')
+        select e.*,jl.`id` as jlid,
+               jl.`name` as jlname,
+        jl.`titleLevel` as jlTitleLevel,
+        d.`id` as did,
+        d.`name` as dname,
+        n.`id` as nid,
+        n.`name` as nname,
+        p.`id` as pid,
+        p.`name` as pname,
+        ps.`id` as psid,
+        ps.`name` as psname
+        from employee e,joblevel jl,department d,nation n,position p,politicsstatus ps
+        where e.`posId`=p.`id` and e.`jobLevelId`=jl.`id`
+        and e.`departmentId`=d.id and e.`nationId`=n.`id`
+        and e.`politicId`=ps.`id` and e.`name` like concat('%',#{keywords,jdbcType=VARCHAR},'%')
         <if test="engageForm!=null and engageForm!=''">
             AND e.engageForm=#{engageForm}
         </if>
@@ -132,6 +143,7 @@
             order by e.id limit #{start},#{size}
         </if>
     </select>
+
     <select id="getCountByKeywords" resultType="Long">
         SELECT count(*) FROM employee e WHERE e.name LIKE concat('%',#{keywords},'%')
         <if test="engageForm!=null and engageForm!=''">

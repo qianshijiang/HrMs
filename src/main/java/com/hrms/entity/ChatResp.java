@@ -1,9 +1,11 @@
 package com.hrms.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by sang on 2018/1/29.
  */
-public class ChatResp {
+public class ChatResp implements Serializable{
     private String msg;
     private String from;
 

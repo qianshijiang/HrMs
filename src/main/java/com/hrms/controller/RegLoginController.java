@@ -17,7 +17,8 @@ public class RegLoginController {
     @GetMapping("/employee/advanced/hello")
     public String hello() {
         return "hello";
-    }    @GetMapping("/employee/basic/hello")
+    }
+    @GetMapping("/employee/basic/hello")
     public String basicHello() {
         return "basicHello";
     }
