@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class RoleService {
     @Autowired
-    RoleMapper roleMapper;
+    private RoleMapper roleMapper;
 
     public List<Role> roles() {
         return roleMapper.roles();
@@ -28,7 +28,7 @@ public class RoleService {
         return roleMapper.addNewRole(role, roleZh);
     }
 
-    public int deleteRoleById(Long rid) {
+    public int deleteRoleById(Integer rid) {
         return roleMapper.deleteRoleById(rid);
     }
 }

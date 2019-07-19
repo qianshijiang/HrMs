@@ -85,7 +85,7 @@
             <result property="name" column="psname"/>
         </association>
         <association property="salary" javaType="com.hrms.entity.Salary">
-            <id column="sid" jdbcType="INTEGER" property="id" />
+            <id column="sid" jdbcType="BIGINT" property="id" />
             <result column="bonus" jdbcType="INTEGER" property="bonus" />
             <result column="lunchSalary" jdbcType="INTEGER" property="lunchSalary" />
             <result column="trafficSalary" jdbcType="INTEGER" property="trafficSalary" />

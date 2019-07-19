@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.mapper.SalaryMapper">
     <resultMap id="BaseResultMap" type="com.hrms.entity.Salary" >
-        <id column="id" property="id" jdbcType="INTEGER" />
+        <id column="id" property="id" jdbcType="BIGINT" />
         <result column="bonus" property="bonus" jdbcType="INTEGER" />
         <result column="lunchSalary" property="lunchSalary" jdbcType="INTEGER" />
         <result column="trafficSalary" property="trafficSalary" jdbcType="INTEGER" />

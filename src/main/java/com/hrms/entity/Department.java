@@ -10,7 +10,7 @@ import java.util.List;
  * Created by sang on 2018/1/7.
  */
 public class Department implements Serializable{
-    private Integer id;
+    private Long id;
     private String name;
     private Long parentId;
     private String depPath;
@@ -59,11 +59,11 @@ public class Department implements Serializable{
         this.result = result;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

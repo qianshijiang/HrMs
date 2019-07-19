@@ -14,5 +14,5 @@ public interface RoleMapper extends BaseMapper<Role,String>{
 
     int addNewRole(@Param("role") String role, @Param("roleZh") String roleZh);
 
-    int deleteRoleById(Long rid);
+    int deleteRoleById(Integer rid);
 }

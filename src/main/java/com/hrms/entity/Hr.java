@@ -14,7 +14,7 @@ import java.util.List;
  * Created by sang on 2017/12/28.
  */
 public class Hr implements UserDetails,Serializable{
-    private Integer id;
+    private Long id;
     private String name;
     private String phone;
     private String telephone;
@@ -79,11 +79,11 @@ public class Hr implements UserDetails,Serializable{
         this.roles = roles;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.mapper.MenuRoleMapper">
-    <delete id="deleteMenuByRid" parameterType="long">
-        DELETE FROM menu_role WHERE rid=#{rid}
+    <delete id="deleteMenuByRid" parameterType="java.lang.Long">
+        DELETE FROM menu_role WHERE rid=#{rid,jdbcType=BIGINT}
     </delete>
     <insert id="addMenu">
         INSERT INTO menu_role(mid,rid) VALUES
         <foreach collection="mids" item="mid" separator=",">
-            (#{mid},#{rid})
+            (#{mid,jdbcType=BIGINT},#{rid,jdbcType=BIGINT})
         </foreach>
     </insert>
 </mapper>

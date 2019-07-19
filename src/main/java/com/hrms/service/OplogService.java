@@ -36,7 +36,7 @@ public class OplogService {
    * @param ip 操作ip
    * @return
    */
-  public int insertSelective(Integer hrid,String descript,String ip) throws Exception{
+  public int insertSelective(Long hrid,String descript,String ip) throws Exception{
     Oplog oplog = new Oplog();
     oplog.setAdddate(DateUtil.getInDate("yyyy-MM-dd HH:mm:ss"));
     oplog.setIp(ip);

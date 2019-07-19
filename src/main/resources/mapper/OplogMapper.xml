@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.mapper.OplogMapper">
   <resultMap id="BaseResultMap" type="com.hrms.entity.Oplog">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="addDate" jdbcType="TIMESTAMP" property="adddate" />
     <result column="operate" jdbcType="VARCHAR" property="operate" />
-    <result column="hrid" jdbcType="INTEGER" property="hrid" />
+    <result column="hrid" jdbcType="BIGINT" property="hrid" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
   </resultMap>
 

@@ -13,7 +13,7 @@ public class DutyInfoVo implements Serializable{
   /**
    * 值班详细Id
    */
-  private Integer dutyInfoId;
+  private Long dutyInfoId;
 
   /**
    * 值班日期
@@ -38,7 +38,7 @@ public class DutyInfoVo implements Serializable{
   /**
    * 操作人员Id
    */
-  private Integer operatorId;
+  private Long operatorId;
 
   /**
    * 操作员名字

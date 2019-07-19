@@ -11,7 +11,7 @@ public class Dutyinfo implements Serializable {
      */
     @Id
     @Column(name = "dutyInfoId")
-    private Integer dutyinfoid;
+    private Long dutyinfoid;
 
     /**
      * 值班日期
@@ -40,7 +40,7 @@ public class Dutyinfo implements Serializable {
      * 操作人员Id
      */
     @Column(name = "operatorId")
-    private Integer operatorid;
+    private Long operatorid;
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +49,7 @@ public class Dutyinfo implements Serializable {
      *
      * @return dutyInfoId - 值班信息详细表Id
      */
-    public Integer getDutyinfoid() {
+    public Long getDutyinfoid() {
         return dutyinfoid;
     }
 
@@ -58,7 +58,7 @@ public class Dutyinfo implements Serializable {
      *
      * @param dutyinfoid 值班信息详细表Id
      */
-    public void setDutyinfoid(Integer dutyinfoid) {
+    public void setDutyinfoid(Long dutyinfoid) {
         this.dutyinfoid = dutyinfoid;
     }
 
@@ -139,7 +139,7 @@ public class Dutyinfo implements Serializable {
      *
      * @return operatorId - 操作人员Id
      */
-    public Integer getOperatorid() {
+    public Long getOperatorid() {
         return operatorid;
     }
 
@@ -148,7 +148,7 @@ public class Dutyinfo implements Serializable {
      *
      * @param operatorid 操作人员Id
      */
-    public void setOperatorid(Integer operatorid) {
+    public void setOperatorid(Long operatorid) {
         this.operatorid = operatorid;
     }
 

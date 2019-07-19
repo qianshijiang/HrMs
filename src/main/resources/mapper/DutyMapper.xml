@@ -3,8 +3,8 @@
 <mapper namespace="com.hrms.mapper.DutyMapper">
   <resultMap id="BaseResultMap" type="com.hrms.entity.Duty">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="dutyInfoId" jdbcType="INTEGER" property="dutyinfoid" />
-    <result column="employeeId" jdbcType="INTEGER" property="employeeid" />
+    <result column="dutyInfoId" jdbcType="BIGINT" property="dutyinfoid" />
+    <result column="employeeId" jdbcType="BIGINT" property="employeeid" />
     <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
     <result column="updateDate" jdbcType="TIMESTAMP" property="updatedate" />
   </resultMap>

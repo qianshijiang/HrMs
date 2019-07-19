@@ -10,19 +10,19 @@ public class Duty implements Serializable {
      * 值班表Id
      */
     @Id
-    private Integer id;
+    private Long id;
 
     /**
      * 值班信息表Id
      */
     @Column(name = "dutyInfoId")
-    private Integer dutyinfoid;
+    private Long dutyinfoid;
 
     /**
      * 人员Id(员工Id）
      */
     @Column(name = "employeeId")
-    private Integer employeeid;
+    private Long employeeid;
 
     /**
      * 创建时间
@@ -43,7 +43,7 @@ public class Duty implements Serializable {
      *
      * @return id - 值班表Id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -52,7 +52,7 @@ public class Duty implements Serializable {
      *
      * @param id 值班表Id
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,7 +61,7 @@ public class Duty implements Serializable {
      *
      * @return dutyInfoId - 值班信息表Id
      */
-    public Integer getDutyinfoid() {
+    public Long getDutyinfoid() {
         return dutyinfoid;
     }
 
@@ -70,7 +70,7 @@ public class Duty implements Serializable {
      *
      * @param dutyinfoid 值班信息表Id
      */
-    public void setDutyinfoid(Integer dutyinfoid) {
+    public void setDutyinfoid(Long dutyinfoid) {
         this.dutyinfoid = dutyinfoid;
     }
 
@@ -79,7 +79,7 @@ public class Duty implements Serializable {
      *
      * @return employeeId - 人员Id(员工Id）
      */
-    public Integer getEmployeeid() {
+    public Long getEmployeeid() {
         return employeeid;
     }
 
@@ -88,7 +88,7 @@ public class Duty implements Serializable {
      *
      * @param employeeid 人员Id(员工Id）
      */
-    public void setEmployeeid(Integer employeeid) {
+    public void setEmployeeid(Long employeeid) {
         this.employeeid = employeeid;
     }
 

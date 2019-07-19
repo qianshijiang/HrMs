@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "oplog")
 public class Oplog implements Serializable {
     @Id
-    private Integer id;
+    private Long id;
 
     /**
      * 添加日期（操作日期）
@@ -23,7 +23,7 @@ public class Oplog implements Serializable {
     /**
      * 操作员ID
      */
-    private Integer hrid;
+    private Long hrid;
 
     /**
      * 操作Ip
@@ -35,14 +35,14 @@ public class Oplog implements Serializable {
     /**
      * @return id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -87,7 +87,7 @@ public class Oplog implements Serializable {
      *
      * @return hrid - 操作员ID
      */
-    public Integer getHrid() {
+    public Long getHrid() {
         return hrid;
     }
 
@@ -96,7 +96,7 @@ public class Oplog implements Serializable {
      *
      * @param hrid 操作员ID
      */
-    public void setHrid(Integer hrid) {
+    public void setHrid(Long hrid) {
         this.hrid = hrid;
     }
 

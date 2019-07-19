@@ -1,5 +1,7 @@
 package com.hrms.controller.system;
 
+import com.hrms.common.HrUtils;
+import com.hrms.common.util.RequestIPUtil;
 import com.hrms.entity.Department;
 import com.hrms.entity.JobLevel;
 import com.hrms.entity.Menu;
@@ -10,8 +12,10 @@ import com.hrms.service.DepartmentService;
 import com.hrms.service.JobLevelService;
 import com.hrms.service.MenuRoleService;
 import com.hrms.service.MenuService;
+import com.hrms.service.OplogService;
 import com.hrms.service.PositionService;
 import com.hrms.service.RoleService;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,30 +33,42 @@ import java.util.Map;
 @RequestMapping("/system/basic")
 public class SystemBasicController {
     @Autowired
-    RoleService roleService;
+    private RoleService roleService;
     @Autowired
-    MenuService menuService;
+    private MenuService menuService;
     @Autowired
-    MenuRoleService menuRoleService;
+    private MenuRoleService menuRoleService;
     @Autowired
-    DepartmentService departmentService;
+    private DepartmentService departmentService;
     @Autowired
-    PositionService positionService;
+    private PositionService positionService;
     @Autowired
-    JobLevelService jobLevelService;
+    private JobLevelService jobLevelService;
+    @Autowired
+    private OplogService oplogService;
 
     @RequestMapping(value = "/role/{rid}", method = RequestMethod.DELETE)
-    public RespBean deleteRole(@PathVariable Long rid) {
-        if (roleService.deleteRoleById(rid) == 1) {
-            return RespBean.ok("删除成功!");
+    public RespBean deleteRole(@PathVariable Integer rid,HttpServletRequest request) {
+        try{
+            if (roleService.deleteRoleById(rid) == 1) {
+                this.oplogService.insertSelective(HrUtils.getCurrentHr().getId(),"删除角色", RequestIPUtil.getIpAddr(request));
+                return RespBean.ok("删除成功!");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return RespBean.error("删除失败!");
     }
 
     @RequestMapping(value = "/addRole", method = RequestMethod.POST)
-    public RespBean addNewRole(String role, String roleZh) {
-        if (roleService.addNewRole(role, roleZh) == 1) {
-            return RespBean.ok("添加成功!");
+    public RespBean addNewRole(String role, String roleZh,HttpServletRequest request) {
+        try{
+            if (roleService.addNewRole(role, roleZh) == 1) {
+                this.oplogService.insertSelective(HrUtils.getCurrentHr().getId(),"添加角色",RequestIPUtil.getIpAddr(request));
+                return RespBean.ok("添加成功!");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return RespBean.error("添加失败!");
     }

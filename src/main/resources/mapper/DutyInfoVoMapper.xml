@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.mapper.DutyInfoVoMapper">
   <resultMap id="BaseResultMap" type="com.hrms.entity.Dutyinfo">
-    <id column="dutyInfoId" jdbcType="INTEGER" property="dutyinfoid" />
+    <id column="dutyInfoId" jdbcType="BIGINT" property="dutyinfoid" />
     <result column="dutyTime" jdbcType="TIMESTAMP" property="dutytime" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="operatorId" jdbcType="INTEGER" property="operatorid" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
     <result column="operName" jdbcType="VARCHAR" property="operName" />
-    <result column="empId" jdbcType="INTEGER" property="empId" />
+    <result column="empId" jdbcType="BIGINT" property="empId" />
     <result column="empName" jdbcType="VARCHAR" property="empName" />
     <result column="workId" jdbcType="VARCHAR" property="workId" />
   </resultMap>
