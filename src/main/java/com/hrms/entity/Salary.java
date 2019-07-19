@@ -2,8 +2,10 @@ package com.hrms.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Id;
 
 public class Salary implements Serializable{
+    @Id
     private Long id;
     private Integer bonus;
     private Integer lunchSalary;

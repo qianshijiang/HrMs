@@ -5,11 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
 /**
  * Created by sang on 2017/12/28.
  */
 public class Menu implements Serializable {
+    @Id
+    @Column(name = "id")
     private Long id;
     private String url;
     private String path;

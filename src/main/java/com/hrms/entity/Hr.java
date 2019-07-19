@@ -2,6 +2,7 @@ package com.hrms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import javax.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by sang on 2017/12/28.
  */
 public class Hr implements UserDetails,Serializable{
+    @Id
     private Long id;
     private String name;
     private String phone;

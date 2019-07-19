@@ -79,7 +79,7 @@ mybatis:
 
 mapper:
     mappers:
-        - com.iblog.base.BaseMapper
+        - com.hrms.common.base.BaseMapper
         - tk.mybatis.mapper.common.Mapper
     not-empty: true
     identity: MYSQL

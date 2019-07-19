@@ -2,6 +2,7 @@ package com.hrms.entity.vo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Id;
 import lombok.Data;
 
 /**
@@ -13,6 +14,7 @@ public class DutyInfoVo implements Serializable{
   /**
    * 值班详细Id
    */
+  @Id
   private Long dutyInfoId;
 
   /**

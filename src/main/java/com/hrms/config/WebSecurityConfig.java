@@ -1,9 +1,11 @@
 package com.hrms.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hrms.common.util.RequestIPUtil;
 import com.hrms.entity.RespBean;
 import com.hrms.common.HrUtils;
 import com.hrms.service.HrService;
+import com.hrms.service.OplogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.*;
@@ -35,13 +37,15 @@ import java.io.PrintWriter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    HrService hrService;
+    private HrService hrService;
     @Autowired
-    CustomMetadataSource metadataSource;
+    private CustomMetadataSource metadataSource;
     @Autowired
-    UrlAccessDecisionManager urlAccessDecisionManager;
+    private UrlAccessDecisionManager urlAccessDecisionManager;
     @Autowired
-    AuthenticationAccessDeniedHandler deniedHandler;
+    private AuthenticationAccessDeniedHandler deniedHandler;
+    @Autowired
+    private OplogService oplogService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -104,6 +108,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                                         Authentication auth) throws IOException {
                         resp.setContentType("application/json;charset=utf-8");
                         RespBean respBean = RespBean.ok("登录成功!", HrUtils.getCurrentHr());
+                        try {
+                            oplogService.insertSelective(HrUtils.getCurrentHr().getId(),"登录成功",
+                                RequestIPUtil.getIpAddr(req));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         ObjectMapper om = new ObjectMapper();
                         PrintWriter out = resp.getWriter();
                         out.write(om.writeValueAsString(respBean));

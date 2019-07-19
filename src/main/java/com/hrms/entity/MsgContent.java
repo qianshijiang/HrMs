@@ -2,11 +2,13 @@ package com.hrms.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Id;
 
 /**
  * Created by sang on 2018/2/2.
  */
 public class MsgContent implements Serializable{
+    @Id
     private Long id;
     private String message;
     private String title;

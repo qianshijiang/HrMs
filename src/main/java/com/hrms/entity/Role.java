@@ -1,11 +1,13 @@
 package com.hrms.entity;
 
 import java.io.Serializable;
+import javax.persistence.Id;
 
 /**
  * Created by sang on 2017/12/28.
  */
 public class Role implements Serializable {
+    @Id
     private Long id;
     private String name;
     private String nameZh;

@@ -1,11 +1,13 @@
 package com.hrms.entity;
 
 import java.io.Serializable;
+import javax.persistence.Id;
 
 /**
  * Created by sang on 2018/1/13.
  */
 public class PoliticsStatus implements Serializable{
+    @Id
     private Long id;
     private String name;
 

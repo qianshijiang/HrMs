@@ -2,11 +2,13 @@ package com.hrms.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import javax.persistence.Id;
 
 /**
  * Created by sang on 2018/1/11.
  */
 public class JobLevel implements Serializable{
+    @Id
     private Long id;
     private String name;
     private String titleLevel;

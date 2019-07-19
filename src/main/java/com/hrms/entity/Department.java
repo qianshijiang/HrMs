@@ -5,11 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
 /**
  * Created by sang on 2018/1/7.
  */
 public class Department implements Serializable{
+    @Id
+    @Column(name="id")
     private Long id;
     private String name;
     private Long parentId;

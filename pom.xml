@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <name>HrMs</name>
-    <description>Spring Boot Hr</description>
+    <description>Spring Boot HrMs</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
