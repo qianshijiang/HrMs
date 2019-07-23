@@ -21,7 +21,7 @@ import java.util.List;
 @Transactional
 public class EmpService {
     @Autowired
-    EmpMapper empMapper;
+    private EmpMapper empMapper;
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
     SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
     SimpleDateFormat birthdayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -101,5 +101,9 @@ public class EmpService {
     public List<Employee> getEmployeeByPageShort(Integer page, Integer size) {
         int start = (page - 1) * size;
         return empMapper.getEmployeeByPageShort(start,size);
+    }
+
+    public List<Employee> getAllEmps(Employee emp){
+        return this.empMapper.selectListByPage(emp);
     }
 }

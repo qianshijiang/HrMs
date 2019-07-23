@@ -81,12 +81,27 @@ public class DateUtil {
      * @return
      * @throws Exception
      */
-    public static Date getInDate(String format) throws Exception{
+    public static Date getInDate(Date date,String format) throws Exception{
         SimpleDateFormat simple = new SimpleDateFormat(format);
-        Date date = new Date();
+        if(date == null){
+            date = new Date();
+        }
         String res = simple.format(date);
         return simple.parse(res);
     }
+    /**
+     * 返回当前系统时间
+     * @param format 时间格式
+     * @return
+     * @throws Exception
+     */
+    public static Date getInDate(String format) throws Exception{
+        SimpleDateFormat simple = new SimpleDateFormat(format);
+         Date date = new Date();
+        String res = simple.format(date);
+        return simple.parse(res);
+    }
+
 
     /**
      * 返回当前系统的时间戳

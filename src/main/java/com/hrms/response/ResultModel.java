@@ -52,7 +52,6 @@ public class ResultModel extends PageBean implements Serializable {
     public static ResultModel success() {
         return new ResultModel(SUCCESS_CODE, (Object)null, "", "");
     }
-
     /*public static ResultModel successI18n(String messageKey, Object data, Object... params) {
         String message = LocaleResolverUtil.getMessage(messageKey, params);
         return new ResultModel(SUCCESS_CODE, data, message, "");

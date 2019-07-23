@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,15 +23,13 @@ public class OplogController {
   private OplogService oplogService;
 
   @RequestMapping(value = "/getOplogList",method = {RequestMethod.POST})
-  public ResultModel getOplogList(@RequestBody String param,HttpServletRequest request){
+  public ResultModel getOplogList(@RequestParam(defaultValue = "") String addDate,
+                                  @RequestParam(defaultValue = "") String hrName,
+                                  @RequestParam(defaultValue = "") String IP,
+                                  @RequestParam(defaultValue = "10") Integer currentPage,
+                                  @RequestParam(defaultValue = "1") Integer pageSize,HttpServletRequest request){
      try{
-       JSONObject object = JSON.parseObject(param,JSONObject.class);
-       String startime = object.get("startime")==null?"":object.getString("startime");
-       String endtime = object.get("endtime")==null?"":object.getString("endtime");
-       int currentPage = object.get("currentPage")==null?1:object.getInteger("currentPage");
-       int pageSize = object.get("pageSize")==null?10:object.getInteger("pageSize");
-
-       ResultModel model = this.oplogService.findListByPage(startime,endtime,currentPage,pageSize);
+       ResultModel model = this.oplogService.findListByPage(addDate,hrName,IP,currentPage,pageSize);
        return ResultModel.successfull("获取操作日志列表成功",model);
      }catch (Exception e){
        e.printStackTrace();

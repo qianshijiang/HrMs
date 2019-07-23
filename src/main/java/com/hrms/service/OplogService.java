@@ -38,7 +38,7 @@ public class OplogService {
    */
   public int insertSelective(Long hrid,String descript,String ip) throws Exception{
     Oplog oplog = new Oplog();
-    oplog.setAdddate(DateUtil.getInDate("yyyy-MM-dd HH:mm:ss"));
+    oplog.setAddDate(DateUtil.getInDate("yyyy-MM-dd HH:mm:ss"));
     oplog.setIp(ip);
     oplog.setHrid(hrid);
     oplog.setOperate(descript);
@@ -65,19 +65,20 @@ public class OplogService {
 
   /**
    * 分页查询日志
-   * @param beginDate 开始时间
-   * @param endDate 结束时间
+   * @param addDate 操作时间
+   * @param hrName 操作人
+   * @param IP IP地址
    * @param currentPage 页码
    * @param pageSize 页数
    * @return
    */
-  public ResultModel findListByPage(String beginDate,String endDate,int currentPage,int pageSize){
+  public ResultModel findListByPage(String addDate,String hrName,String IP,int currentPage,int pageSize){
      //设置分页信息，分别是当前页数和每页显示的总记录数
     //PageHelper.startPage(1,10)只对后面紧跟的第一个查询,查出的数据进行分页(https://blog.csdn.net/csdn___lyy/article/details/77160488)
     /*int count = this.lawCaseMapper.findListTimeoutCount(areaCode);*/
     PageHelper.startPage(currentPage,pageSize);
     //获取操作日志
-    List<Oplog> oplogList = this.oplogMapper.getOplogBydate(beginDate,endDate);
+    List<Oplog> oplogList = this.oplogMapper.getOplogBydate(addDate,hrName,IP);
     PageInfo<Oplog> info = new PageInfo<>(oplogList);
     ResultModel pageData = new ResultModel(currentPage, pageSize, Integer.valueOf(String.valueOf(info.getTotal())));
     pageData.setData(oplogList);

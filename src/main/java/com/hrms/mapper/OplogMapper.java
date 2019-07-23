@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface OplogMapper extends BaseMapper<Oplog,String> {
 
-  List<Oplog> getOplogBydate(@Param("startime") String startime,@Param("endtime") String endtime);
+  List<Oplog> getOplogBydate(@Param("addDate") String addDate,@Param("hrName") String hrName,@Param("IP") String IP);
 
   List<Oplog> getOplogByPage();
 

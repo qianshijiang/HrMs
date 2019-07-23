@@ -11,13 +11,29 @@ import java.util.Date;
  */
 public class DateConverter implements Converter<String,Date> {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat datesdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat datesdfx = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    private SimpleDateFormat datesdfxl = new SimpleDateFormat("yyyy/MM/dd");
     @Override
     public Date convert(String s) {
         if ("".equals(s) || s == null) {
             return null;
         }
+        s = s.trim();
         try {
-            return simpleDateFormat.parse(s);
+            if (s.contains("-")) {
+                if (s.contains(":")) {
+                    return datesdf.parse(s);
+                } else {
+                    return simpleDateFormat.parse(s);
+                }
+            } else if (s.contains("/")) {
+                if (s.contains(":")) {
+                    return datesdfx.parse(s);
+                } else {
+                    return datesdfxl.parse(s);
+                }
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }

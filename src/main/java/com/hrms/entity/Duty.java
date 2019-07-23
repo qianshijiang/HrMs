@@ -10,6 +10,7 @@ public class Duty implements Serializable {
      * 值班表Id
      */
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     /**

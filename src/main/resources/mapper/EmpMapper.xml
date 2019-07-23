@@ -3,6 +3,74 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.mapper.EmpMapper">
+    <resultMap id="BaseResultMap" type="com.hrms.entity.Employee">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+        <result column="idCard" property="idCard" jdbcType="VARCHAR"/>
+        <result column="wedlock" property="wedlock" jdbcType="VARCHAR"/>
+        <result column="nationId" property="nationId" jdbcType="BIGINT"/>
+        <result column="nativePlace" property="nativePlace" jdbcType="VARCHAR"/>
+        <result column="politicId" property="politicId" jdbcType="BIGINT"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="departmentId" property="departmentId" jdbcType="BIGINT"/>
+        <result column="jobLevelId" property="jobLevelId" jdbcType="BIGINT"/>
+        <result column="posId" property="posId" jdbcType="BIGINT"/>
+        <result column="engageForm" property="engageForm" jdbcType="VARCHAR"/>
+        <result column="tiptopDegree" property="tiptopDegree" jdbcType="VARCHAR"/>
+        <result column="specialty" property="specialty" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="beginDate" property="beginDate" jdbcType="TIMESTAMP"/>
+        <result column="workState" property="workState" jdbcType="VARCHAR"/>
+        <result column="workID" property="workID" jdbcType="VARCHAR"/>
+        <result column="contractTerm" property="contractTerm" jdbcType="DOUBLE"/>
+        <result column="conversionTime" property="conversionTime" jdbcType="TIMESTAMP"/>
+        <result column="notWorkDate" property="notWorkDate" jdbcType="TIMESTAMP"/>
+        <result column="beginContract" property="beginContract" jdbcType="TIMESTAMP"/>
+        <result column="endContract" property="endContract" jdbcType="TIMESTAMP"/>
+        <result column="workAge" property="workAge" jdbcType="INTEGER"/>
+        <association property="department" javaType="com.hrms.entity.Department">
+            <id property="id" column="did" jdbcType="BIGINT"/>
+            <result property="name" column="dname" jdbcType="VARCHAR"/>
+        </association>
+        <association property="jobLevel" javaType="com.hrms.entity.JobLevel">
+            <id property="id" column="jlid" jdbcType="BIGINT"/>
+            <result property="name" column="jlname" jdbcType="VARCHAR"/>
+            <result property="titleLevel" column="jlTitleLevel" jdbcType="VARCHAR"/>
+        </association>
+        <association property="nation" javaType="com.hrms.entity.Nation">
+            <id property="id" column="nid" jdbcType="BIGINT"/>
+            <result property="name" column="nname" jdbcType="VARCHAR"/>
+        </association>
+        <association property="position" javaType="com.hrms.entity.Position">
+            <id property="id" column="pid" jdbcType="BIGINT"/>
+            <result property="name" column="pname" jdbcType="VARCHAR"/>
+        </association>
+        <association property="politicsStatus" javaType="com.hrms.entity.PoliticsStatus">
+            <id property="id" column="psid" jdbcType="BIGINT"/>
+            <result property="name" column="psname" jdbcType="VARCHAR"/>
+        </association>
+        <association property="salary" javaType="com.hrms.entity.Salary">
+            <id column="sid" jdbcType="BIGINT" property="id"/>
+            <result column="bonus" jdbcType="INTEGER" property="bonus"/>
+            <result column="lunchSalary" jdbcType="INTEGER" property="lunchSalary"/>
+            <result column="trafficSalary" jdbcType="INTEGER" property="trafficSalary"/>
+            <result column="basicSalary" jdbcType="INTEGER" property="basicSalary"/>
+            <result column="allSalary" jdbcType="INTEGER" property="allSalary"/>
+            <result column="pensionBase" jdbcType="INTEGER" property="pensionBase"/>
+            <result column="pensionPer" jdbcType="REAL" property="pensionPer"/>
+            <result column="createDate" jdbcType="TIMESTAMP" property="createDate"/>
+            <result column="medicalBase" jdbcType="INTEGER" property="medicalBase"/>
+            <result column="medicalPer" jdbcType="REAL" property="medicalPer"/>
+            <result column="accumulationFundBase" jdbcType="INTEGER" property="accumulationFundBase"/>
+            <result column="accumulationFundPer" jdbcType="REAL" property="accumulationFundPer"/>
+            <result column="sname" jdbcType="VARCHAR" property="name"/>
+        </association>
+    </resultMap>
+
     <select id="getAllNations" resultType="com.hrms.entity.Nation">
         select * from nation;
     </select>
@@ -34,73 +102,6 @@
     <select id="getMaxWorkID" resultType="Long">
         SELECT workID from employee where id=(select max(id) from employee)
     </select>
-    <resultMap id="BaseResultMap" type="com.hrms.entity.Employee">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="gender" property="gender"/>
-        <result column="birthday" property="birthday"/>
-        <result column="idCard" property="idCard"/>
-        <result column="wedlock" property="wedlock"/>
-        <result column="nationId" property="nationId"/>
-        <result column="nativePlace" property="nativePlace"/>
-        <result column="politicId" property="politicId"/>
-        <result column="email" property="email"/>
-        <result column="phone" property="phone"/>
-        <result column="address" property="address"/>
-        <result column="departmentId" property="departmentId"/>
-        <result column="jobLevelId" property="jobLevelId"/>
-        <result column="posId" property="posId"/>
-        <result column="engageForm" property="engageForm"/>
-        <result column="tiptopDegree" property="tiptopDegree"/>
-        <result column="specialty" property="specialty"/>
-        <result column="school" property="school"/>
-        <result column="beginDate" property="beginDate"/>
-        <result column="workState" property="workState"/>
-        <result column="workID" property="workID"/>
-        <result column="contractTerm" property="contractTerm"/>
-        <result column="conversionTime" property="conversionTime"/>
-        <result column="notWorkDate" property="notWorkDate"/>
-        <result column="beginContract" property="beginContract"/>
-        <result column="endContract" property="endContract"/>
-        <result column="workAge" property="workAge"/>
-        <association property="department" javaType="com.hrms.entity.Department">
-            <id property="id" column="did"/>
-            <result property="name" column="dname"/>
-        </association>
-        <association property="jobLevel" javaType="com.hrms.entity.JobLevel">
-            <id property="id" column="jlid"/>
-            <result property="name" column="jlname"/>
-            <result property="titleLevel" column="jlTitleLevel"/>
-        </association>
-        <association property="nation" javaType="com.hrms.entity.Nation">
-            <id property="id" column="nid"/>
-            <result property="name" column="nname"/>
-        </association>
-        <association property="position" javaType="com.hrms.entity.Position">
-            <id property="id" column="pid"/>
-            <result property="name" column="pname"/>
-        </association>
-        <association property="politicsStatus" javaType="com.hrms.entity.PoliticsStatus">
-            <id property="id" column="psid"/>
-            <result property="name" column="psname"/>
-        </association>
-        <association property="salary" javaType="com.hrms.entity.Salary">
-            <id column="sid" jdbcType="BIGINT" property="id" />
-            <result column="bonus" jdbcType="INTEGER" property="bonus" />
-            <result column="lunchSalary" jdbcType="INTEGER" property="lunchSalary" />
-            <result column="trafficSalary" jdbcType="INTEGER" property="trafficSalary" />
-            <result column="basicSalary" jdbcType="INTEGER" property="basicSalary" />
-            <result column="allSalary" jdbcType="INTEGER" property="allSalary" />
-            <result column="pensionBase" jdbcType="INTEGER" property="pensionBase" />
-            <result column="pensionPer" jdbcType="REAL" property="pensionPer" />
-            <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
-            <result column="medicalBase" jdbcType="INTEGER" property="medicalBase" />
-            <result column="medicalPer" jdbcType="REAL" property="medicalPer" />
-            <result column="accumulationFundBase" jdbcType="INTEGER" property="accumulationFundBase" />
-            <result column="accumulationFundPer" jdbcType="REAL" property="accumulationFundPer" />
-            <result column="sname" jdbcType="VARCHAR" property="name" />
-        </association>
-    </resultMap>
 
     <select id="getEmployeeByPage" resultMap="BaseResultMap">
         select e.*,jl.`id` as jlid,
@@ -283,5 +284,10 @@
     </insert>
     <select id="getEmployeeByPageShort" resultMap="BaseResultMap">
 select e.*,d.`id` as did,d.`name` as dname,s.`id` as sid,s.`accumulationFundBase`,s.`accumulationFundPer`,s.`allSalary`,s.`basicSalary`,s.`bonus`,s.`createDate`,s.`lunchSalary`,s.`medicalBase`,s.`medicalPer`,s.`name` as sname,s.`pensionBase`,s.`pensionPer`,s.`trafficSalary` from employee e left join department d on e.`departmentId`=d.id left join empsalary es on es.`eid`=e.`id` left join salary s on s.`id`=es.`sid` ORDER BY e.id limit #{start},#{size}
+    </select>
+
+    <!--查询所有人员-->
+    <select id="selectListByPage" resultMap="BaseResultMap" parameterType="com.hrms.entity.Employee">
+      select e.id,e.name from employee e
     </select>
 </mapper>

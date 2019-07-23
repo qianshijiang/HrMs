@@ -1,9 +1,8 @@
 package com.hrms.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.hrms.common.HrUtils;
 import com.hrms.common.util.RequestIPUtil;
+import com.hrms.entity.vo.DutyInfoVo;
 import com.hrms.response.ResultModel;
 import com.hrms.service.DutyInfoVoService;
 import com.hrms.service.OplogService;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,15 +28,13 @@ public class DutyController {
   private OplogService oplogService;
 
   @RequestMapping(value = "/getListByPage",method = {RequestMethod.POST})
-  public ResultModel getListByPage(@RequestBody String param,HttpServletRequest request){
+  public ResultModel getListByPage(@RequestParam(defaultValue = "") String dutyTime,
+                                   @RequestParam(defaultValue = "") String empName,
+                                   @RequestParam(defaultValue = "") String workId,
+                                   @RequestParam(defaultValue = "1") Integer currentPage,
+                                   @RequestParam(defaultValue = "10") Integer pageSize,
+                                   HttpServletRequest request){
     try{
-      JSONObject object = JSON.parseObject(param,JSONObject.class);
-      String dutyTime = object.get("dutyTime")==null?"":object.getString("dutyTime");
-      String empName = object.get("empName")==null?"":object.getString("empName");
-      String workId = object.get("workId")==null?"":object.getString("workId");
-      int currentPage = object.get("currentPage")==null?1:object.getInteger("currentPage");
-      int pageSize = object.get("pageSize")==null?10:object.getInteger("pageSize");
-
       ResultModel model = this.dutyInfoVoService.findListByPage(dutyTime,empName,workId,currentPage,pageSize);
       this.oplogService.insertSelective(HrUtils.getCurrentHr().getId(),"获取值班列表", RequestIPUtil.getIpAddr(request));
 
@@ -45,6 +43,22 @@ public class DutyController {
       e.printStackTrace();
       return ResultModel.fail("服务器发生未知错误，请稍后重试",e.getCause().getMessage());
     }
+  }
+
+  @RequestMapping(value = "/addDutyInfo",method = {RequestMethod.POST})
+  public ResultModel addDutyInfo(DutyInfoVo div,HttpServletRequest request){
+    try{
+        int i = this.dutyInfoVoService.addDutyInfo(div);
+        if(i>0){
+          ResultModel.success("添加成功",null);
+        }else{
+          ResultModel.fail("添加失败","");
+        }
+    }catch (Exception e){
+      e.printStackTrace();
+      return ResultModel.fail("服务器发生未知错误，请稍后重试",e.getCause().getMessage());
+    }
+    return null;
   }
 
 

@@ -3,9 +3,10 @@
 <mapper namespace="com.hrms.mapper.OplogMapper">
   <resultMap id="BaseResultMap" type="com.hrms.entity.Oplog">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="addDate" jdbcType="TIMESTAMP" property="adddate" />
+    <result column="addDate" jdbcType="TIMESTAMP" property="addDate" />
     <result column="operate" jdbcType="VARCHAR" property="operate" />
     <result column="hrid" jdbcType="BIGINT" property="hrid" />
+    <result column="hrName" jdbcType="VARCHAR" property="hrName" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
   </resultMap>
 
@@ -15,15 +16,25 @@
 
   <!--根据条件查询-->
   <select id="getOplogBydate" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select
-    <include refid="selectSql"/>
-    from oplog op
+    select op.id,
+           op.addDate,
+           op.operate,
+           op.hrid,
+           h.`name` hrName,
+           op.ip
+    from oplog op LEFT JOIN hr h on h.id = op.hrid
     <where>
-      <if test="startime != null and startime != ''">
-        and op.addDate <![CDATA[>= ]]> str_to_date(concat(#{startime,jdbcType=VARCHAR},' 00:00:00'), '%Y-%m-%d %H:%i:%s')
+      <if test="addDate != null and addDate != ''">
+        and op.addDate <![CDATA[>= ]]> str_to_date(concat(#{addDate,jdbcType=VARCHAR},' 00:00:00'), '%Y-%m-%d %H:%i:%s')
       </if>
-      <if test="endtime != null and endtime != ''">
-        and op.addDate <![CDATA[<= ]]> str_to_date(concat(#{endtime,jdbcType=VARCHAR},' 23:59:59'), '%Y-%m-%d %H:%i:%s')
+      <if test="addDate != null and addDate != ''">
+        and op.addDate <![CDATA[<= ]]> str_to_date(concat(#{addDate,jdbcType=VARCHAR},' 23:59:59'), '%Y-%m-%d %H:%i:%s')
+      </if>
+      <if test="hrName != null and hrName != ''">
+        and h.name = #{hrName,jdbcType=VARCHAR}
+      </if>
+      <if test="IP != null and IP != ''">
+        and op.ip = #{IP,jdbcType=VARCHAR}
       </if>
     </where>
     order by op.addDate desc

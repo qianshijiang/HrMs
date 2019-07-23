@@ -4,6 +4,7 @@ import com.hrms.common.HrUtils;
 import com.hrms.common.util.RequestIPUtil;
 import com.hrms.entity.Position;
 import com.hrms.common.EmailRunnable;
+import com.hrms.response.ResultModel;
 import com.hrms.service.JobLevelService;
 import com.hrms.service.OplogService;
 import com.hrms.service.PositionService;
@@ -185,5 +186,16 @@ public class EmpBasicController {
             e.printStackTrace();
         }
         return RespBean.error("导入失败!");
+    }
+
+    @RequestMapping(value = "/getAllEmps",method = {RequestMethod.POST})
+    public ResultModel getAppEmps(HttpServletRequest request){
+      try{
+          this.oplogService.insertSelective(HrUtils.getCurrentHr().getId(),"获取员工列表",RequestIPUtil.getIpAddr(request));
+          return ResultModel.success("获取员工列表成功",this.empService.getAllEmps(new Employee()));
+      }catch (Exception e){
+          e.printStackTrace();
+          return ResultModel.fail("服务器发生未知错误，请稍后重试",e.getCause().getMessage());
+      }
     }
 }

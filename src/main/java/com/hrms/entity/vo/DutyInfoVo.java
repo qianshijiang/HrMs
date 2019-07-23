@@ -1,9 +1,13 @@
 package com.hrms.entity.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Created by QSJ on 2019/7/18.
@@ -20,6 +24,8 @@ public class DutyInfoVo implements Serializable{
   /**
    * 值班日期
    */
+  //@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private Date dutyTime;
 
   /**
@@ -30,11 +36,15 @@ public class DutyInfoVo implements Serializable{
   /**
    * 创建时间
    */
+  //@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private Date createTime;
 
   /**
    * 修改时间
    */
+  //@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private Date updateTime;
 
   /**
@@ -50,7 +60,7 @@ public class DutyInfoVo implements Serializable{
   /**
    * 员工Id
    */
-  private Integer empId;
+  private Long empId;
 
   /**
    * 员工姓名
@@ -62,4 +72,8 @@ public class DutyInfoVo implements Serializable{
    */
   private String workId;
 
+  /**
+   * 员工Id集合
+   */
+  private List<Long> empIdList;
 }
