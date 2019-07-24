@@ -2,9 +2,6 @@
 
 ##人力资源管理系统
 
-### 参考
-- https://github.com/lenve/vhr
-
 ### 项目地址
 
 [前端地址:](https://github.com/qianshijiang/HrMsView.git)
