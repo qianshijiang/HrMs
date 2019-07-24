@@ -3,7 +3,7 @@
 ##人力资源管理系统
 
 ### 参考
--https://github.com/lenve/vhr
+- https://github.com/lenve/vhr
 
 ### 项目地址
 
@@ -19,6 +19,7 @@
 2.SpringSecurity  
 3.MyBatis  
 4.MySQL
+5.Lombok
 
 ## 前端技术栈
 
